@@ -61,7 +61,7 @@ public class XMLUtils {
 	 * @return O primeiro elemento filho de <i>parent</i> cujo nome seja igual a <i>childName</i>,
 	 *  ou null caso nenhum elemento com esse nome seja encontrado.
 	 */
-	public static Element recuperarReferencia(Element parent, String childName) {
+	public static Element recuperarReferencia(final Element parent, final String childName) {
 		Element tmpElement = getFirstChildElement(parent);
 		
 		while (tmpElement != null) {
@@ -82,7 +82,7 @@ public class XMLUtils {
 	 * @return O próximo elemento irmão de <i>node</i> ou null, caso não haja 
 	 * mais irmãos.
 	 */
-	public static Element getNextSiblingElement(Node node) {
+	public static Element getNextSiblingElement(final Node node) {
 		if (node != null) {
 			Node tmpResult = node.getNextSibling();
 			
@@ -105,7 +105,7 @@ public class XMLUtils {
 	 * @param parent O pai do elemento filho desejado.
 	 * @return O primeiro elemento filho de <i>parent</i> ou null, caso não haja filhos.
 	 */
-	public static Element getFirstChildElement(Node parent) {
+	public static Element getFirstChildElement(final Node parent) {
 		if (parent != null) {
 			Node tmpResult = parent.getFirstChild();
 			
