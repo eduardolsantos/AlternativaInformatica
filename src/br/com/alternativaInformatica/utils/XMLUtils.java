@@ -15,28 +15,57 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 public class XMLUtils {
-	public static Element abrirXML(String caminho) throws SAXException, IOException, ParserConfigurationException {
-		File tmpArquivo = new File(caminho);
-		
-		if (tmpArquivo.exists()) {
-			FileInputStream tmpInputStream = new FileInputStream(tmpArquivo);
-			DocumentBuilderFactory tmpDocBuilderFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder tmpDocBuilder = tmpDocBuilderFactory.newDocumentBuilder();
-			Document tmpXMLDoc = tmpDocBuilder.parse(tmpInputStream);
-			Element tmpRaiz = tmpXMLDoc.getDocumentElement();
+	
+	/**
+	 * Converte um arquivo XML para uma árvore e retorna sua raiz.
+	 * @param caminho O caminho do arquivo a ser convertido.
+	 * @return A raiz da árvore montada.
+	 * @throws Exception Se o arquivo não existir, não for do tipo XML ou se houver 
+	 * algum erro para abrir, ler ou converter o arquivo indicado.
+	 */
+	public static Element abrirXML(final String caminho) throws Exception {
+		if (caminho.toLowerCase().endsWith(".xml")) {
+			File tmpArquivo = new File(caminho);
 			
-			return tmpRaiz;
+			if (tmpArquivo.exists()) {
+				try {
+					FileInputStream tmpInputStream = new FileInputStream(tmpArquivo);
+					DocumentBuilderFactory tmpDocBuilderFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder tmpDocBuilder = tmpDocBuilderFactory.newDocumentBuilder();
+					Document tmpXMLDoc;
+					tmpXMLDoc = tmpDocBuilder.parse(tmpInputStream);
+					
+					return tmpXMLDoc.getDocumentElement();
+				} catch (SAXException e) {
+					throw new Exception("Erro ao converter arquivo.");
+				} catch (ParserConfigurationException e) {
+					throw new Exception("Erro ao abrir arquivo.");
+				} catch (IOException e) {
+					throw new IOException("Erro ao ler arquivo.");
+				}
+				
+			}
+			
+			throw new FileNotFoundException("O arquivo indicado não existe.");
 		}
 		
-		throw new FileNotFoundException("O arquivo indicado não existe.");
+		throw new Exception("Arquivo inválido. Indique apenas arquivos do tipo XML.");
 	}
 	
 	// Considera apenas camada de filhos de parent. Desconsidera filhos de filhos.
-	public static Element recuperarReferencia(Element parentTag, String tagName) {
-		Element tmpElement = getFirstChildElement(parentTag);
+	/**
+	 * Retorna a referência do primeiro elemento filho de <i>parent</i>, cujo nome for 
+	 * igual a <i>childName</i>.
+	 * @param parent O pai do elemento desejado.
+	 * @param childName O nome do elemento desejado. Obs.: case sensitive.
+	 * @return O primeiro elemento filho de <i>parent</i> cujo nome seja igual a <i>childName</i>,
+	 *  ou null caso nenhum elemento com esse nome seja encontrado.
+	 */
+	public static Element recuperarReferencia(Element parent, String childName) {
+		Element tmpElement = getFirstChildElement(parent);
 		
 		while (tmpElement != null) {
-			if (tmpElement.getTagName().equals(tagName)) {
+			if (tmpElement.getTagName().equals(childName)) {
 				return tmpElement;
 			}
 			
@@ -46,6 +75,13 @@ public class XMLUtils {
 		return null;
 	}
 	
+	
+	/**
+	 * Retorna o próximo elemento irmão de <i>node</i>.
+	 * @param node O elemento a ser usado para procurar o próximo irmão.
+	 * @return O próximo elemento irmão de <i>node</i> ou null, caso não haja 
+	 * mais irmãos.
+	 */
 	public static Element getNextSiblingElement(Node node) {
 		if (node != null) {
 			Node tmpResult = node.getNextSibling();
@@ -62,9 +98,16 @@ public class XMLUtils {
 		return null;
 	}
 	
-	public static Element getFirstChildElement(Node parentNode) {
-		if (parentNode != null) {
-			Node tmpResult = parentNode.getFirstChild();
+	
+	/**
+	 * Retorna o primeiro elemento filho de <i>parent</i>.
+	 * 
+	 * @param parent O pai do elemento filho desejado.
+	 * @return O primeiro elemento filho de <i>parent</i> ou null, caso não haja filhos.
+	 */
+	public static Element getFirstChildElement(Node parent) {
+		if (parent != null) {
+			Node tmpResult = parent.getFirstChild();
 			
 			if (tmpResult != null) {
 				if (Node.ELEMENT_NODE == tmpResult.getNodeType()) {
