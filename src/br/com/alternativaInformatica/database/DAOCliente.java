@@ -17,51 +17,60 @@ public class DAOCliente extends DAO {
 		return instance;
 	}
 
+	/**
+	 * Cadastra o cliente no Banco de Dados.
+	 * @param cliente O cliente a ser cadastrado.
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public void cadastrar(Cliente cliente) throws ClassNotFoundException, SQLException {
-		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT into Cliente ");
-		sql.append("(nome, contato, endereco, fone, bairro, cep, cidade, estado, cnpj, ie, email)");
-		sql.append(" values ('");
-		sql.append(cliente.getNome());
-		sql.append("','");
-		sql.append(cliente.getContato());
-		sql.append("','");
-		sql.append(cliente.getEndereco());
-		sql.append("','");
-		sql.append(cliente.getFone());
-		sql.append("','");
-		sql.append(cliente.getBairro());
-		sql.append("','");
-		sql.append(cliente.getCep());
-		sql.append("','");
-		sql.append(cliente.getCidade());
-		sql.append("','");
-		sql.append(cliente.getEstado());
-		sql.append("','");
-		sql.append(cliente.getCnpj());
-		sql.append("','");
-		sql.append(cliente.getIE());
-		sql.append("','");
-		sql.append(cliente.getEmail());
-		sql.append("');");
+		if (cliente == null) {
+//			throw new Exception("Cliente inválido.");
+		}
+		
+		StringBuffer tmpSql = new StringBuffer();
+		tmpSql.append("INSERT into Cliente ");
+		tmpSql.append("(nome, contato, endereco, fone, bairro, cep, cidade, estado, cnpj, ie, email)");
+		tmpSql.append(" values ('");
+		tmpSql.append(cliente.getNome());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getContato());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getEndereco());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getFone());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getBairro());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getCep());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getCidade());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getEstado());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getCnpj());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getIE());
+		tmpSql.append("','");
+		tmpSql.append(cliente.getEmail());
+		tmpSql.append("');");
 
 		super.conectar();
-		super.executarAtualizacao(sql.toString());
+		super.executarAtualizacao(tmpSql.toString());
 		super.desconectar();
-
 	}
 
-	public void editar() {
-
+	public void editar(Cliente cliente) {
+		//TODO Implementar edição de cadastro.
 	}
 
 	public ArrayList<Cliente> recuperarClientes() throws SQLException, ClassNotFoundException {
 		
 		super.conectar();
 		
-		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+		ArrayList<Cliente> tmpClientes = new ArrayList<Cliente>();
 		
-		ResultSet tmpConsulta = super.executarConsulta("select * from cliente;");
+		ResultSet tmpConsulta = super.executarConsulta("SELECT * FROM cliente;");
 		while (tmpConsulta.next()) {
 			Cliente tmpCliente = new Cliente(tmpConsulta.getString("nome"), tmpConsulta.getString("contato"),
 					tmpConsulta.getString("endereco"), tmpConsulta.getString("fone") ,tmpConsulta.getString("bairro"),
@@ -69,11 +78,11 @@ public class DAOCliente extends DAO {
 					"", tmpConsulta.getString("ie"), tmpConsulta.getString("email"),
 					tmpConsulta.getString("id"));
 			
-			clientes.add(tmpCliente);
+			tmpClientes.add(tmpCliente);
 		}
 
 		super.desconectar();
 
-		return clientes;
+		return tmpClientes;
 	}
 }
