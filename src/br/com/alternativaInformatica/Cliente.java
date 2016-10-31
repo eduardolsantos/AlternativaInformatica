@@ -14,6 +14,8 @@ public class Cliente {
 	private String cnpj = "";
 	private String ie = "";
 	private String email = "";
+	
+	//alteração
 
 	public Cliente(String nome) {
 		this.nome = nome;
