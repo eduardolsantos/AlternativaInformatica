@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relatorio>
+	<cabecalho align="center" style="width: 680px; color: blue; font-size: 11pt; font-weight: bold; font-family: Times New Roman; text-align: center; border-collapse: collapse;">
+		<imagem rowspan="3" height="150px" width="150px" src="C:\Projetos\Java\LP3\files\modelo\logo_alternativa.png" />
+		<texto colspan="2" style="font-family: Arial; font-size: 26pt;">ALTERNATIVA INFORMÁTICA</texto>
+		<texto colspan="2" style="font-size: 14pt;">Manutenção e Consultoria em Microcomputadores</texto>
+		<texto>Av. Mário Eulálio, 205 - Bairro Jardim | Fone/Fax: (19) 3582-3115 | Celular: (19) 99758-0195</texto>
+		<texto>Santa Rita do Passa Quatro - SP | CEP: 13670-000 | Email: sandra.alternativa@terra.com.br</texto>
+	</cabecalho>
+	
+	<corpo>
+		<inicio>
+			<campo texto="DATA DE ENTRADA: " valor="__/__/" style="text-align: left; font-weight: bold; font-size: 16pt;" />
+			<campo texto="ORDEM DE SERVIÇO NR: " style="text-align: right; font-weight: bold; font-size: 16pt;" />
+		</inicio>
+			
+		<cliente align="center" border="1" style="width: 680px; border-collapse: collapse; text-align: left; font-family: Times New Roman; font-size: 11pt;">
+			<campo texto="CLIENTE: " colspan="3" width="65%" style="padding: 1px;" />
+			<campo texto="CONTATO: " style="padding: 1px;" />
+			
+			<campo texto="ENDEREÇO: " colspan="3" width="65%" style="padding: 1px;" />
+			<campo texto="FONE: " style="padding: 1px;" />
+			
+			<campo texto="BAIRRO: " style="padding: 1px;" />
+			<campo texto="CEP: " style="padding: 1px;" />
+			<campo texto="CIDADE: " style="padding: 1px;" />
+			<campo texto="ESTADO: " valor="São Paulo" />
+			
+			<campo texto="CNPJ: " style="padding: 1px;" />
+			<campo texto="I.E.: " style="padding: 1px;" />
+			<campo texto="EMAIL: " colspan="2" style="padding: 1px;" />
+		</cliente>
+		
+		<equipamento align="center" border="1" style="width: 680px; border-collapse: collapse; text-align: left; font-family: Times New Roman; font-size: 11pt;">
+			<campo texto="DESCRIÇÃO DO EQUIPAMENTO: " colspan="2" style="padding: 1px;" />
+			
+			<campo texto="ACESSÓRIOS " style="padding: 1px;" />
+			<campo texto="NR. DE SÉRIE: " width="30%" style="padding: 1px;" />
+			
+			<campo texto="DEFEITO: " colspan="2" style="padding: 1px;" />
+		</equipamento>
+		
+		<solucao align="center" border="1" style="width: 680px; border-collapse: collapse; text-align: center; font-family: Times New Roman; font-size: 11pt;">
+			<cabecalho>
+				<texto width="60%" style="padding: 1px; font-weight: bold;">SOLUÇÃO</texto>
+				<texto width="10%" style="padding: 1px; font-weight: bold;">VALOR</texto>
+				<texto width="28%" style="padding: 1px 5px 1px 1px; font-weight: bold;">ORÇAMENTO</texto>
+			</cabecalho>
+			
+			<orcamento>
+				<campo texto="ELABORADO: " valor="__/__/" width="28%" style="padding: 1px 5px 1px 1px; text-align: right;" />
+				<campo texto="APROVADO: " valor="__/__/" width="28%" style="padding: 1px 5px 1px 1px; text-align: right;" />
+				<campo texto="REPROVADO: " valor="__/__/" width="28%" style="padding: 1px 5px 1px 1px; text-align: right;" />
+				<campo texto="LIBERADO: " valor="__/__/" width="28%" style="padding: 1px 5px 1px 1px; text-align: right;" />
+			</orcamento>
+			
+			<rodape>
+				<texto width="60%" style="padding: 1px; font-weight: bold;">VALOR TOTAL</texto>
+			</rodape>
+		</solucao>
+	</corpo>
+	
+	<rodape>
+		<autorizacao>
+			<texto style="text-align: center; font-weight: bold;">"Autorizo" a cobrança dos serviços acima descritos, sendo que retiro nesta data o(s) equipamento(s) em perfeito estado de funcionamento.</texto>
+			<texto style="text-align: center; font-weight: bold;">"Não Autorizo" a cobrança dos serviços acima descritos, sendo que retiro nesta data o(s) equipamento(s) sem conserto.</texto>
+		</autorizacao>
+		
+		<campo texto="Santa Rita do Passa Quatro, " valor="__/__/" style="text-align: center;" />
+		
+		<assinatura>
+			<texto style="text-align: center;">ROGÉRIO ALVES | TÉCNICO ELETRÔNICO</texto>
+			<texto style="text-align: center;">ASSINATURA DO CLIENTE</texto>
+		</assinatura>
+		
+		<campo texto="Os serviços executados terão garantia de " valor="___" complemento=" dias, à partir da data de retirada do(s) equipamento(s)." align="center" style="width: 680px; font-family: Times New Roman; font-style: italic; text-decoration: underline;" />
+	</rodape>
+</relatorio>
