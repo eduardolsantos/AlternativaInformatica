@@ -29,9 +29,9 @@ public class DAOCliente extends DAO {
 		}
 		
 		StringBuffer tmpSql = new StringBuffer();
-		tmpSql.append("INSERT into Cliente ");
+		tmpSql.append("INSERT INTO Cliente ");
 		tmpSql.append("(nome, contato, endereco, fone, bairro, cep, cidade, estado, cnpj, ie, email)");
-		tmpSql.append(" values ('");
+		tmpSql.append(" VALUES ('");
 		tmpSql.append(cliente.getNome());
 		tmpSql.append("','");
 		tmpSql.append(cliente.getContato());
@@ -55,9 +55,7 @@ public class DAOCliente extends DAO {
 		tmpSql.append(cliente.getEmail());
 		tmpSql.append("');");
 
-		super.conectar();
 		super.executarAtualizacao(tmpSql.toString());
-		super.desconectar();
 	}
 
 	public void editar(Cliente cliente) {
@@ -70,7 +68,7 @@ public class DAOCliente extends DAO {
 		
 		ArrayList<Cliente> tmpClientes = new ArrayList<Cliente>();
 		
-		ResultSet tmpConsulta = super.executarConsulta("SELECT * FROM cliente;");
+		ResultSet tmpConsulta = super.executarConsulta("SELECT * FROM cliente ORDER BY nome ASC;");
 		while (tmpConsulta.next()) {
 			Cliente tmpCliente = new Cliente(tmpConsulta.getString("nome"), tmpConsulta.getString("contato"),
 					tmpConsulta.getString("endereco"), tmpConsulta.getString("fone") ,tmpConsulta.getString("bairro"),

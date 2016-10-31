@@ -4,12 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class DAO {
-	private final String CAMINHO_DATABASE = "C:\\Users\\Eduardo\\Desktop\\Alternativa 2.0";	
+	private final String CAMINHO_DATABASE = "\\db\\Alternativa 2.0";	
 	private Database database;
 	
 	protected DAO() {
 		this.database = SQLite.getInstance();
-		this.database.setCaminho(CAMINHO_DATABASE);
+		
+		// TODO caminho do Banco usando Resources
+		this.database.setCaminho(System.getProperty("user.dir") + CAMINHO_DATABASE);
 	}
 	
 	/**

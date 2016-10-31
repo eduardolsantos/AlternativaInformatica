@@ -9,10 +9,15 @@ public class Servico {
 		this.id = id;
 	}
 	
-	public Servico(String id, String descricao, double preco){
-		this.id = id;
+	public Servico(String descricao, double preco){
 		this.descricao = descricao;
 		this.preco = preco;
+	}
+	
+	
+	public Servico(String id, String descricao, double preco){
+		this(descricao, preco);
+		this.id = id;
 	}
 	
 	public void setDescricao(String descricao){
@@ -34,7 +39,4 @@ public class Servico {
 	public double getPreco(){
 		return this.preco;
 	}
-	
-	
-	
 }
